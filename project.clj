@@ -6,6 +6,8 @@
                  [hiccup "1.0.5"]
                  [compojure "1.1.8"]]
 
+  :uberjar-name "vampire-web.jar"
+				 
   :plugins [[lein-ring "0.8.11"]]
 
   :ring {:handler vampire-web.core/app})
