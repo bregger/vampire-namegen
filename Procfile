@@ -1,1 +1,1 @@
-java $JVM_OPTS -cp target/vampire-web.jar clojure.main -m vampire-web.core $PORT
+java -jar target/vampire-web.jar
