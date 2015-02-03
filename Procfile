@@ -1,1 +1,1 @@
-java -jar target/vampire-web.jar
+lein trampoline ring server-headless $PORT
