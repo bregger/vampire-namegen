@@ -1,1 +1,1 @@
-web: lein trampoline ring server-headless $PORT
+web: java $JVM_OPTS -cp target/vampire-web.jar clojure.main -m vampire-web.core
