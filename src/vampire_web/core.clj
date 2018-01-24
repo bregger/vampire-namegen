@@ -1,4 +1,5 @@
 (ns vampire-web.core
+  (:gen-class)
   (:use compojure.core)
   (:use [org.httpkit.server :only [run-server]])
   (:use ring.middleware.params)
@@ -16,10 +17,19 @@
   (route/resources "/")
   (route/not-found "Page not found"))
 
+(defn wrap-logging [handler]
+  (fn [request]
+    (println (str ">>> REQUEST [" (:request-method request) "] " (:uri request)))
+    (let [response (handler request)]
+      (println "<<< RESPONSE" (:status response))
+      response)))
+
 (def app
   (-> approutes
+      wrap-logging
       wrap-params))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 9000))]
+    (println "Application starting. Listening on port" port)
     (run-server app {:port port})))
